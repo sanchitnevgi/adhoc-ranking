@@ -85,7 +85,6 @@ def generate_triples(outfile, triples_to_generate):
                 continue
 
             stats['kept'] += 1
-#                stats['rankkept_' + rank] += 1
 
             # Each line has 10 columns, 2 are the topicid and query, 4 from the positive docid and 4 from the unjudged docid
             out.write(topicid + "\t" + querystring[topicid] + "\t" +
