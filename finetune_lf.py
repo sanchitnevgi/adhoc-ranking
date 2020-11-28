@@ -36,8 +36,6 @@ class RankingModel(LightningModule):
         self.model = LongformerForSequenceClassification.from_pretrained("allenai/longformer-base-4096")
 
     def forward(self, input_ids, attention_masks, global_attention_mask, labels):
-        # inputs: input_ids, attention_mask, global_attention_mask, labels
-        
         outputs = self.model(input_ids, attention_masks, global_attention_mask, labels=labels, return_dict=True)
 
         return outputs.loss
@@ -49,6 +47,8 @@ class RankingModel(LightningModule):
         global_attention_mask = torch.zeros(input_ids.shape, dtype=torch.long)
 
         loss = self(input_ids, attention_masks, global_attention_mask, labels)
+
+        self.log("train_loss", loss)
 
         return loss
 
@@ -73,7 +73,9 @@ class RankingModel(LightningModule):
 
     def _feature_file(self, mode):
         cached_file_name = f"cached_{mode}"
-        return cached_file_name
+        cached_file_path = os.path.join(self.args.data_dir, cached_file_name)
+        
+        return cached_file_path
     
     def _encode(self, query, body):
         return self.tokenizer(
@@ -85,10 +87,14 @@ class RankingModel(LightningModule):
         )
 
     def prepare_data(self):
-        logging.info("Creating features from dataset file at %s", args.data_dir)
+        feature_file_path = self._feature_file("train")
 
+        if not args.overwrite_cache and os.path.exists(feature_file_path):
+            logging.info("Using cached feature file")
+            return
+
+        logging.info("Creating features from dataset file at %s", args.data_dir)
         triples_path = os.path.join(self.args.data_dir, "triples.tsv")
-        features_file = self._feature_file("train")
         
         features = []
 
@@ -107,9 +113,8 @@ class RankingModel(LightningModule):
                 inputs["label"] = 0
                 features.append(inputs)
 
-        torch.save(features , features_file)
-        logging.info("Cached feature file")
-
+        torch.save(features , feature_file_path)
+        logging.info(f"Cached features to {feature_file_path}")
 
 if __name__ == "__main__":
     # Parse arguments
@@ -134,6 +139,8 @@ if __name__ == "__main__":
 
     parser.add_argument("--seed", type=int, default=42, help="random seed for initialization")
 
+    parser.add_argument("--overwrite-cache", type=bool, default=False, help="overwrite cache")
+
     # Training arguments
     parser = Trainer.add_argparse_args(parser)
 
@@ -156,12 +163,12 @@ if __name__ == "__main__":
 
     seed_everything(args.seed)
 
-    # wandb_logger = WandbLogger(project="adhoc-ranking")
+    wandb_logger = WandbLogger(project="adhoc-ranking")
 
     trainer = Trainer.from_argparse_args(
-        args
+        args,
+        logger=wandb_logger
     )
-    # logger=wandb_logger
 
     model = RankingModel(args)
 

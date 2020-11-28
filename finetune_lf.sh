@@ -26,4 +26,5 @@ python3 finetune_lf.py --data_dir $DATA_DIR \
 --eval_batch_size $BATCH_SIZE \
 --accumulate_grad_batches $ACCUMULATE_GRAD \
 --seed $SEED \
---gpus 0
+--gpus 1 \
+--amp_level 02
