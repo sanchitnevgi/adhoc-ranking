@@ -106,6 +106,10 @@ class RankingModel(LightningModule):
             rows = csv.reader(f, delimiter="\t")
 
             for row in rows:
+                # Bad row
+                if len(row) != 10:
+                    continue
+
                 triple = QueryTriple(*row)
 
                 # Create a positive and negative feature
@@ -116,6 +120,8 @@ class RankingModel(LightningModule):
                 inputs = self._encode(triple.query, triple.rnd_doc_body)
                 inputs["label"] = 0
                 features.append(inputs)
+
+        logging.info(f"Dataset size: {len(features)}")
 
         torch.save(features , feature_file_path)
         logging.info(f"Cached features to {feature_file_path}")
