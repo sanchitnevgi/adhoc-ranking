@@ -50,7 +50,7 @@ class RankingModel(LightningModule):
         input_ids, attention_masks, labels = batch
         
         # TODO: Globally attend to query tokens
-        global_attention_mask = torch.zeros(input_ids.shape, dtype=torch.long)
+        global_attention_mask = torch.zeros(input_ids.shape, dtype=torch.long, device=self.device)
 
         loss = self(input_ids, attention_masks, global_attention_mask, labels)
 
@@ -67,14 +67,15 @@ class RankingModel(LightningModule):
 
         features = torch.load(feature_file)
 
-        all_input_ids = torch.tensor([f.input_ids for f in features], dtype=torch.long)
-        all_attention_mask = torch.tensor([f.attention_mask for f in features], dtype=torch.long)
-        all_labels = torch.tensor([f.label for f in features], dtype=torch.long)
+        all_input_ids = torch.tensor([f.input_ids for f in features], dtype=torch.long, device=self.device)
+        all_attention_mask = torch.tensor([f.attention_mask for f in features], dtype=torch.long, device=self.device)
+        all_labels = torch.tensor([f.label for f in features], dtype=torch.long, device=self.device)
 
         return DataLoader(
             TensorDataset(all_input_ids, all_attention_mask, all_labels),
             batch_size=self.args.train_batch_size,
-            shuffle= True
+            shuffle= True,
+            num_workers=4
         )
 
     def _feature_file(self, mode):
