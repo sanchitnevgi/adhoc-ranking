@@ -67,9 +67,9 @@ class RankingModel(LightningModule):
 
         features = torch.load(feature_file)
 
-        all_input_ids = torch.tensor([f.input_ids for f in features], dtype=torch.long, device=self.device)
-        all_attention_mask = torch.tensor([f.attention_mask for f in features], dtype=torch.long, device=self.device)
-        all_labels = torch.tensor([f.label for f in features], dtype=torch.long, device=self.device)
+        all_input_ids = torch.tensor([f.input_ids for f in features], dtype=torch.long)
+        all_attention_mask = torch.tensor([f.attention_mask for f in features], dtype=torch.long)
+        all_labels = torch.tensor([f.label for f in features], dtype=torch.long)
 
         return DataLoader(
             TensorDataset(all_input_ids, all_attention_mask, all_labels),
