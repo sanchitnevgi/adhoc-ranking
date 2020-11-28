@@ -1,62 +1,115 @@
 import argparse
 import logging
+import csv
+import os
+from collections import namedtuple
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
-from torchvision import transforms, datasets
+from torch.utils.data import DataLoader, TensorDataset
 
 from transformers import (
     AdamW,
-    LongformerConfig,
     LongformerModel,
-    LongformerTokenizerFast,
+    LongformerForSequenceClassification,
+    LongformerTokenizer,
     get_linear_schedule_with_warmup
 )
 
 from pytorch_lightning import seed_everything, LightningModule, Trainer
 from pytorch_lightning.loggers import WandbLogger
+from pytorch_lightning.metrics.functional import accuracy
 
 logging.basicConfig(format="%(levelname)s: %(message)s", level=logging.INFO)
 
+QueryTriple = namedtuple("QueryTriple", ["topic_id", "query", "rel_doc_id", "rel_doc_url", "rel_doc_title", "rel_doc_body", 
+"rnd_doc_id", "rnd_doc_url", "rnd_doc_title", "rnd_doc_body"])
+
 class RankingModel(LightningModule):
-    def __init__(self, params):
+    def __init__(self, args):
         super().__init__()
 
-        self.params = params
-        self.linear = nn.Linear(28 * 28, 10)
+        self.args = args
 
-    def forward(self, x):
-        return torch.relu(self.linear(x.view(x.size(0), -1)))
+        self.tokenizer = LongformerTokenizer.from_pretrained("allenai/longformer-base-4096")
+        self.model = LongformerForSequenceClassification.from_pretrained("allenai/longformer-base-4096")
+
+    def forward(self, input_ids, attention_masks, global_attention_mask, labels):
+        # inputs: input_ids, attention_mask, global_attention_mask, labels
+        
+        outputs = self.model(input_ids, attention_masks, global_attention_mask, labels=labels, return_dict=True)
+
+        return outputs.loss
 
     def training_step(self, batch, batch_idx):
-        inputs, labels = batch
-        preds = self(inputs)
+        input_ids, attention_masks, labels = batch
+        
+        # TODO: Globally attend to query tokens
+        global_attention_mask = torch.zeros(input_ids.shape, dtype=torch.long)
 
-        loss = F.cross_entropy(preds, labels)
+        loss = self(input_ids, attention_masks, global_attention_mask, labels)
 
         return loss
 
     def configure_optimizers(self):
-        return AdamW(self.parameters(), lr=self.params.learning_rate)
+        return AdamW(self.parameters(), lr=self.args.learning_rate)
 
     def train_dataloader(self):
-        transform = transforms.Compose([
-                                    transforms.ToTensor(),
-                                    transforms.Normalize((0.5,), (1.0,))
-                                ])
+        logging.info("Loading feature file")
+        feature_file = self._feature_file("train")
 
-        dataset = datasets.MNIST(root=self.params.data_dir, train=True, transform=transform, download=True)
+        features = torch.load(feature_file)
 
-        loader = torch.utils.data.DataLoader(
-            dataset=dataset,
-            batch_size=self.params.train_batch_size,
-            shuffle=True,
-            num_workers=4
+        all_input_ids = torch.tensor([f.input_ids for f in features], dtype=torch.long)
+        all_attention_mask = torch.tensor([f.attention_mask for f in features], dtype=torch.long)
+        all_labels = torch.tensor([f.label for f in features], dtype=torch.long)
+
+        return DataLoader(
+            TensorDataset(all_input_ids, all_attention_mask, all_labels),
+            batch_size=self.args.train_batch_size,
+            shuffle= True
         )
 
-        return loader
+    def _feature_file(self, mode):
+        cached_file_name = f"cached_{mode}"
+        return cached_file_name
+    
+    def _encode(self, query, body):
+        return self.tokenizer(
+            query, body, 
+            max_length=self.args.max_seq_length,
+            padding="max_length",
+            truncation=True,
+            return_attention_mask=True
+        )
+
+    def prepare_data(self):
+        logging.info("Creating features from dataset file at %s", args.data_dir)
+
+        triples_path = os.path.join(self.args.data_dir, "triples.tsv")
+        features_file = self._feature_file("train")
+        
+        features = []
+
+        with open(triples_path) as f:
+            rows = csv.reader(f, delimiter="\t")
+
+            for row in rows:
+                triple = QueryTriple(*row)
+
+                # Create a positive and negative feature
+                inputs = self._encode(triple.query, triple.rel_doc_body)
+                inputs["label"] = 1
+                features.append(inputs)
+                
+                inputs = self._encode(triple.query, triple.rnd_doc_body)
+                inputs["label"] = 0
+                features.append(inputs)
+
+        torch.save(features , features_file)
+        logging.info("Cached feature file")
+
 
 if __name__ == "__main__":
     # Parse arguments
@@ -65,17 +118,17 @@ if __name__ == "__main__":
     # Program arguments
     parser.add_argument(
         "--data_dir",
-        default=None,
+        default="./data",
         type=str,
-        required=True,
+        # required=True,
         help="The data directory",
     )
 
     parser.add_argument(
         "--output_dir",
-        default=None,
+        default="./output",
         type=str,
-        required=True,
+        # required=True,
         help="The output directory where the model predictions and checkpoints will be written.",
     )
 
@@ -103,13 +156,14 @@ if __name__ == "__main__":
 
     seed_everything(args.seed)
 
-    wandb_logger = WandbLogger(project="adhoc-ranking")
+    # wandb_logger = WandbLogger(project="adhoc-ranking")
 
     trainer = Trainer.from_argparse_args(
-        args,
-        logger=wandb_logger
+        args
     )
+    # logger=wandb_logger
 
     model = RankingModel(args)
 
     trainer.fit(model)
+    logging.info("Training complete")

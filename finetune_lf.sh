@@ -4,7 +4,7 @@
 #SBATCH --mem=32GB
 
 export DATA_DIR=./data
-export MAX_LENGTH=256
+export MAX_SEQ_LENGTH=128
 export LEARNING_RATE=2e-5
 export BATCH_SIZE=16
 export ACCUMULATE_GRAD=2
@@ -18,7 +18,7 @@ mkdir -p $OUTPUT_DIR
 
 python3 finetune_lf.py --data_dir $DATA_DIR \
 --output_dir $OUTPUT_DIR \
---max_seq_length  $MAX_LENGTH \
+--max_seq_length  $MAX_SEQ_LENGTH \
 --learning_rate $LEARNING_RATE \
 --max_epochs $MAX_EPOCHS \
 --warmup_steps $WARMUP_STEPS \
