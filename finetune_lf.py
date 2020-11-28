@@ -2,6 +2,7 @@ import argparse
 import logging
 import csv
 import os
+import ctypes as ct
 from collections import namedtuple
 
 import torch
@@ -22,6 +23,9 @@ from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.metrics.functional import accuracy
 
 logging.basicConfig(format="%(levelname)s: %(message)s", level=logging.INFO)
+
+# Set the max field size in csv, due to long text fields
+csv.field_size_limit(int(ct.c_ulong(-1).value // 2))
 
 QueryTriple = namedtuple("QueryTriple", ["topic_id", "query", "rel_doc_id", "rel_doc_url", "rel_doc_title", "rel_doc_body", 
 "rnd_doc_id", "rnd_doc_url", "rnd_doc_title", "rnd_doc_body"])

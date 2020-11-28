@@ -4,7 +4,7 @@
 #SBATCH --mem=32GB
 
 export DATA_DIR=./data
-export MAX_SEQ_LENGTH=128
+export MAX_SEQ_LENGTH=256
 export LEARNING_RATE=2e-5
 export BATCH_SIZE=16
 export ACCUMULATE_GRAD=2
@@ -26,5 +26,4 @@ python3 finetune_lf.py --data_dir $DATA_DIR \
 --eval_batch_size $BATCH_SIZE \
 --accumulate_grad_batches $ACCUMULATE_GRAD \
 --seed $SEED \
---gpus 1 \
---amp_level 02
+--gpus 1
