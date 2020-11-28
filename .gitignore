@@ -1,5 +1,6 @@
 data
-
+wandb
+adhoc-ranking
 # Created by https://www.toptal.com/developers/gitignore/api/python,JupyterNotebooks
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,JupyterNotebooks
 

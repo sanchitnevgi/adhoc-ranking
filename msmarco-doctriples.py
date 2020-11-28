@@ -1,7 +1,6 @@
 import csv
 import random
 import gzip
-import os
 from collections import defaultdict
 
 # The query string for each topicid is querystring[topicid]

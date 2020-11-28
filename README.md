@@ -35,3 +35,8 @@ target/appassembler/bin/SearchCollection -index indexes/lucene-index.msmarco-doc
  -topicreader TsvInt -topics src/main/resources/topics-and-qrels/topics.dl19-doc.txt \
  -bm25 -bm25.k1 3.44 -bm25.b 0.87 -rm3 -output run.dl19-doc.bm25-tuned+rm3.topics.dl19-doc.txt
 ```
+## Commands
+
+```python
+df = pd.read_csv("./triples.tsv", sep="\t", names=["topicid", "qy", "posdocid", "posurl", "postitle", "posbody", "rnddocid", "rndurl", "rndtitle", "rndbody"])
+```
