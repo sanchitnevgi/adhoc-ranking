@@ -5,6 +5,8 @@ import os
 import ctypes as ct
 from collections import namedtuple
 
+from tqdm import tqdm
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -105,7 +107,7 @@ class RankingModel(LightningModule):
         with open(triples_path) as f:
             rows = csv.reader(f, delimiter="\t")
 
-            for row in rows:
+            for row in tqdm(rows):
                 # Bad row
                 if len(row) != 10:
                     continue
