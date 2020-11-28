@@ -59,7 +59,12 @@ class RankingModel(LightningModule):
         return loss
 
     def configure_optimizers(self):
-        return AdamW(self.parameters(), lr=self.args.learning_rate)
+        optimizer = AdamW(self.parameters(), lr=self.args.learning_rate)
+
+        scheduler = get_linear_schedule_with_warmup(optimizer, 
+                        num_warmup_steps=self.args.warmup_steps, num_training_steps=self.args.max_steps)
+
+        return [optimizer], [scheduler]
 
     def train_dataloader(self):
         logging.info("Loading feature file")

@@ -5,11 +5,11 @@
 
 export DATA_DIR=./data
 export MAX_SEQ_LENGTH=256
-export LEARNING_RATE=2e-5
-export BATCH_SIZE=16
-export ACCUMULATE_GRAD=2
-export MAX_EPOCHS=5
-export WARMUP_STEPS=10
+export LEARNING_RATE=3e-5
+export BATCH_SIZE=4
+export ACCUMULATE_GRAD=4
+export MAX_STEPS=2000
+export WARMUP_STEPS=100
 export SEED=42
 export OUTPUT_DIR=./output
 
@@ -20,7 +20,7 @@ python3 finetune_lf.py --data_dir $DATA_DIR \
 --output_dir $OUTPUT_DIR \
 --max_seq_length  $MAX_SEQ_LENGTH \
 --learning_rate $LEARNING_RATE \
---max_epochs $MAX_EPOCHS \
+--max_steps $MAX_STEPS \
 --warmup_steps $WARMUP_STEPS \
 --train_batch_size $BATCH_SIZE \
 --eval_batch_size $BATCH_SIZE \
