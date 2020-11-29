@@ -48,10 +48,7 @@ class RankingModel(LightningModule):
         return outputs.loss, outputs.logits
 
     def training_step(self, batch, batch_idx):
-        input_ids, attention_masks, labels = batch
-        
-        # TODO: Globally attend to query tokens
-        global_attention_mask = torch.zeros(input_ids.shape, dtype=torch.long, device=self.device)
+        input_ids, attention_masks, global_attention_mask, labels = batch
 
         loss, logits = self(input_ids, attention_masks, global_attention_mask, labels)
 
@@ -60,10 +57,7 @@ class RankingModel(LightningModule):
         return loss
     
     def validation_step(self, batch, batch_idx):
-        input_ids, attention_masks, labels = batch
-
-        # TODO: Globally attend to query tokens
-        global_attention_mask = torch.zeros(input_ids.shape, dtype=torch.long, device=self.device)
+        input_ids, attention_masks, global_attention_mask, labels = batch
 
         loss, logits = self(input_ids, attention_masks, global_attention_mask, labels)
 
@@ -78,7 +72,7 @@ class RankingModel(LightningModule):
         optimizer = AdamW(self.parameters(), lr=self.args.learning_rate)
 
         scheduler = get_linear_schedule_with_warmup(optimizer, 
-                        num_warmup_steps=self.args.warmup_steps, num_training_steps=self.args.max_steps)
+                        num_warmup_steps=self.args.warmup_steps, num_training_steps=1000)
 
         return [optimizer], [scheduler]
 
@@ -91,9 +85,20 @@ class RankingModel(LightningModule):
         all_input_ids = torch.tensor([f.input_ids for f in features], dtype=torch.long)
         all_attention_mask = torch.tensor([f.attention_mask for f in features], dtype=torch.long)
         all_labels = torch.tensor([f.label for f in features], dtype=torch.long)
+        
+        # Build global attention mask
+        global_attention_mask = []
+        EOS_TOKEN = 2
+        
+        for f in features:
+            mask = torch.zeros(self.args.max_seq_length)
+            mask[:f.input_ids.index(EOS_TOKEN)] = 1
+            global_attention_mask.append(mask)
+        
+        global_attention_mask = torch.vstack(global_attention_mask)
 
         return DataLoader(
-            TensorDataset(all_input_ids, all_attention_mask, all_labels),
+            TensorDataset(all_input_ids, all_attention_mask, global_attention_mask, all_labels),
             batch_size=self.args.train_batch_size,
             shuffle=(mode == "train"),
             num_workers=4
