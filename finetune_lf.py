@@ -22,7 +22,7 @@ from transformers import (
 
 from pytorch_lightning import seed_everything, LightningModule, Trainer
 from pytorch_lightning.loggers import WandbLogger
-from pytorch_lightning.callbacks import ModelCheckpoint, callbacks
+from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.metrics.functional import accuracy
 
 logging.basicConfig(format="%(levelname)s: %(message)s", level=logging.INFO)
