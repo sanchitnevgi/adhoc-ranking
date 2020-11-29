@@ -38,6 +38,7 @@ class RankingModel(LightningModule):
         super().__init__()
 
         self.args = args
+        self.save_hyperparameters(args)
 
         self.tokenizer = LongformerTokenizer.from_pretrained("allenai/longformer-base-4096")
         self.model = LongformerForSequenceClassification.from_pretrained("allenai/longformer-base-4096")
@@ -76,6 +77,21 @@ class RankingModel(LightningModule):
 
         return [optimizer], [scheduler]
 
+    def build_global_attention(self, all_input_ids):
+        EOS_TOKEN = 2
+        global_attention_mask = []
+        
+        for input_ids in all_input_ids:
+            mask = torch.zeros(self.args.max_seq_length)
+            # Set the query tokens to 1 (first end of sentence) 
+            mask[:input_ids.index(EOS_TOKEN)] = 1
+            
+            global_attention_mask.append(mask)
+        
+        global_attention_mask = torch.vstack(global_attention_mask)
+        
+        return global_attention_mask
+
     def get_dataloader(self, mode):
         logging.info(f"Loading {mode} feature file")
         feature_file = self._feature_file(mode)
@@ -85,17 +101,9 @@ class RankingModel(LightningModule):
         all_input_ids = torch.tensor([f.input_ids for f in features], dtype=torch.long)
         all_attention_mask = torch.tensor([f.attention_mask for f in features], dtype=torch.long)
         all_labels = torch.tensor([f.label for f in features], dtype=torch.long)
-        
+
         # Build global attention mask
-        global_attention_mask = []
-        EOS_TOKEN = 2
-        
-        for f in features:
-            mask = torch.zeros(self.args.max_seq_length)
-            mask[:f.input_ids.index(EOS_TOKEN)] = 1
-            global_attention_mask.append(mask)
-        
-        global_attention_mask = torch.vstack(global_attention_mask)
+        global_attention_mask = self.build_global_attention([f.input_ids for f in features])
 
         return DataLoader(
             TensorDataset(all_input_ids, all_attention_mask, global_attention_mask, all_labels),

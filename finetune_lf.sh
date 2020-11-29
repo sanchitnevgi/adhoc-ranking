@@ -9,7 +9,7 @@ export LEARNING_RATE=3e-5
 export BATCH_SIZE=4
 export ACCUMULATE_GRAD=4
 export MAX_STEPS=10000
-export WARMUP_STEPS=200
+export WARMUP_STEPS=0
 export SEED=42
 export OUTPUT_DIR=./output
 
