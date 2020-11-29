@@ -102,7 +102,7 @@ class RankingModel(LightningModule):
         return self.get_dataloader("train")
 
     def val_dataloader(self):
-        return self.get_dataloader("val")
+        return self.get_dataloader("dev")
 
     def _feature_file(self, mode):
         cached_file_name = f"cached_{mode}"
@@ -125,7 +125,7 @@ class RankingModel(LightningModule):
 
             if not args.overwrite_cache and os.path.exists(feature_file_path):
                 logging.info(f"Using cached {mode} feature file")
-                return
+                continue
 
             logging.info(f"Creating {mode} features from dataset file at %s", args.data_dir)
             triples_path = os.path.join(self.args.data_dir, f"{mode}_triples.tsv")
@@ -207,6 +207,7 @@ if __name__ == "__main__":
 
     trainer = Trainer.from_argparse_args(
         args,
+        default_root_dir=args.output_dir,
         logger=wandb_logger
     )
 
