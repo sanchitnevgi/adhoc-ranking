@@ -44,7 +44,7 @@ class RankingModel(LightningModule):
     def forward(self, input_ids, attention_masks, global_attention_mask, labels):
         outputs = self.model(input_ids, attention_masks, global_attention_mask, labels=labels, return_dict=True)
 
-        return outputs.loss
+        return outputs.loss, outputs.logits
 
     def training_step(self, batch, batch_idx):
         input_ids, attention_masks, labels = batch
@@ -52,9 +52,24 @@ class RankingModel(LightningModule):
         # TODO: Globally attend to query tokens
         global_attention_mask = torch.zeros(input_ids.shape, dtype=torch.long, device=self.device)
 
-        loss = self(input_ids, attention_masks, global_attention_mask, labels)
+        loss, logits = self(input_ids, attention_masks, global_attention_mask, labels)
 
         self.log("train_loss", loss)
+
+        return loss
+    
+    def validation_step(self, batch, batch_idx):
+        input_ids, attention_masks, labels = batch
+
+        # TODO: Globally attend to query tokens
+        global_attention_mask = torch.zeros(input_ids.shape, dtype=torch.long, device=self.device)
+
+        loss, logits = self(input_ids, attention_masks, global_attention_mask, labels)
+
+        preds = torch.argmax(logits, dim=1)
+
+        self.log("val_loss", loss)
+        self.log("acc", accuracy(preds, labels))
 
         return loss
 
@@ -66,9 +81,9 @@ class RankingModel(LightningModule):
 
         return [optimizer], [scheduler]
 
-    def train_dataloader(self):
-        logging.info("Loading feature file")
-        feature_file = self._feature_file("train")
+    def get_dataloader(self, mode):
+        logging.info(f"Loading {mode} feature file")
+        feature_file = self._feature_file(mode)
 
         features = torch.load(feature_file)
 
@@ -79,9 +94,15 @@ class RankingModel(LightningModule):
         return DataLoader(
             TensorDataset(all_input_ids, all_attention_mask, all_labels),
             batch_size=self.args.train_batch_size,
-            shuffle= True,
+            shuffle=(mode == "train"),
             num_workers=4
         )
+
+    def train_dataloader(self):
+        return self.get_dataloader("train")
+
+    def val_dataloader(self):
+        return self.get_dataloader("val")
 
     def _feature_file(self, mode):
         cached_file_name = f"cached_{mode}"
@@ -99,40 +120,41 @@ class RankingModel(LightningModule):
         )
 
     def prepare_data(self):
-        feature_file_path = self._feature_file("train")
+        for mode in ["train", "dev"]:
+            feature_file_path = self._feature_file(mode)
 
-        if not args.overwrite_cache and os.path.exists(feature_file_path):
-            logging.info("Using cached feature file")
-            return
+            if not args.overwrite_cache and os.path.exists(feature_file_path):
+                logging.info(f"Using cached {mode} feature file")
+                return
 
-        logging.info("Creating features from dataset file at %s", args.data_dir)
-        triples_path = os.path.join(self.args.data_dir, "triples.tsv")
-        
-        features = []
+            logging.info(f"Creating {mode} features from dataset file at %s", args.data_dir)
+            triples_path = os.path.join(self.args.data_dir, f"{mode}_triples.tsv")
 
-        with open(triples_path) as f:
-            rows = csv.reader(f, delimiter="\t")
+            features = []
 
-            for row in tqdm(rows):
-                # Bad row
-                if len(row) != 10:
-                    continue
+            with open(triples_path) as f:
+                rows = csv.reader(f, delimiter="\t")
 
-                triple = QueryTriple(*row)
+                for row in tqdm(rows):
+                    # Bad row
+                    if len(row) != 10:
+                        continue
 
-                # Create a positive and negative feature
-                inputs = self._encode(triple.query, triple.rel_doc_body)
-                inputs["label"] = 1
-                features.append(inputs)
-                
-                inputs = self._encode(triple.query, triple.rnd_doc_body)
-                inputs["label"] = 0
-                features.append(inputs)
+                    triple = QueryTriple(*row)
 
-        logging.info(f"Dataset size: {len(features)}")
+                    # Create a positive and negative feature
+                    inputs = self._encode(triple.query, triple.rel_doc_body)
+                    inputs["label"] = 1
+                    features.append(inputs)
 
-        torch.save(features , feature_file_path)
-        logging.info(f"Cached features to {feature_file_path}")
+                    inputs = self._encode(triple.query, triple.rnd_doc_body)
+                    inputs["label"] = 0
+                    features.append(inputs)
+
+            logging.info(f"{mode} dataset size: {len(features)}")
+
+            torch.save(features , feature_file_path)
+            logging.info(f"Cached features to {feature_file_path}")
 
 if __name__ == "__main__":
     # Parse arguments
