@@ -72,7 +72,7 @@ class RankingModel(LightningModule):
         optimizer = AdamW(self.parameters(), lr=self.args.learning_rate)
 
         scheduler = get_linear_schedule_with_warmup(optimizer, 
-                        num_warmup_steps=self.args.warmup_steps, num_training_steps=1000)
+                        num_warmup_steps=self.args.warmup_steps, num_training_steps=self.args.max_steps)
 
         return [optimizer], [scheduler]
 
