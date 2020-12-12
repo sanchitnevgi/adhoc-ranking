@@ -1,0 +1,92 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: final-report.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: milestone.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--page numbers missing in both pages and numpages fields in Beltagy2020LongformerTL
+Warning--page numbers missing in both pages and numpages fields in Campos2016MSMA
+Warning--empty publisher in Chen2019UCASAT
+Warning--empty address in Chen2019UCASAT
+Warning--page numbers missing in both pages and numpages fields in Chen2019UCASAT
+Warning--page numbers missing in both pages and numpages fields in Craswell2020OverviewOT
+Warning--empty publisher in Devlin2019BERTPO
+Warning--empty address in Devlin2019BERTPO
+Warning--page numbers missing in both pages and numpages fields in Devlin2019BERTPO
+Warning--no number and no volume in Guo2016ADR
+Warning--page numbers missing in both pages and numpages fields in Guo2016ADR
+Warning--empty publisher in Hui2017PACRRAP
+Warning--empty address in Hui2017PACRRAP
+Warning--page numbers missing in both pages and numpages fields in Hui2017PACRRAP
+Warning--no number and no volume in Hui2018CoPACRRAC
+Warning--page numbers missing in both pages and numpages fields in Hui2018CoPACRRAC
+Warning--page numbers missing in both pages and numpages fields in Kingma2015AdamAM
+Warning--empty publisher in Kovaleva2019RevealingTD
+Warning--empty address in Kovaleva2019RevealingTD
+Warning--page numbers missing in both pages and numpages fields in Kovaleva2019RevealingTD
+Warning--page numbers missing in both pages and numpages fields in Li2020PARADEPR
+Warning--page numbers missing in both pages and numpages fields in Liu2019RoBERTaAR
+Warning--no number and no volume in MacAvaney2019CEDRCE
+Warning--page numbers missing in both pages and numpages fields in MacAvaney2019CEDRCE
+Warning--no number and no volume in nogueira_passage_2020
+Warning--page numbers missing in both pages and numpages fields in nogueira_passage_2020
+Warning--page numbers missing in both pages and numpages fields in Vaswani2017AttentionIA
+Warning--empty booktitle in Xiong2017ConvolutionalNN
+Warning--empty publisher in Xiong2017ConvolutionalNN
+Warning--empty address in Xiong2017ConvolutionalNN
+Warning--page numbers missing in both pages and numpages fields in Xiong2017ConvolutionalNN
+Warning--no number and no volume in Xiong2017EndtoEndNA
+Warning--page numbers missing in both pages and numpages fields in Xiong2017EndtoEndNA
+Warning--no number and no volume in Yang2017AnseriniET
+Warning--page numbers missing in both pages and numpages fields in Yang2017AnseriniET
+Warning--no number and no volume in yang_simple_2019
+Warning--page numbers missing in both pages and numpages fields in yang_simple_2019
+You've used 21 entries,
+            5901 wiz_defined-function locations,
+            1434 strings with 18485 characters,
+and the built_in function-call counts, 24602 in all, are:
+= -- 3295
+> -- 1194
+< -- 0
++ -- 401
+- -- 384
+* -- 1974
+:= -- 2577
+add.period$ -- 102
+call.type$ -- 21
+change.case$ -- 176
+chr.to.int$ -- 19
+cite$ -- 58
+duplicate$ -- 1894
+empty$ -- 1363
+format.name$ -- 466
+if$ -- 6094
+int.to.chr$ -- 4
+int.to.str$ -- 1
+missing$ -- 88
+newline$ -- 219
+num.names$ -- 166
+pop$ -- 854
+preamble$ -- 1
+purify$ -- 361
+quote$ -- 0
+skip$ -- 562
+stack$ -- 0
+substring$ -- 1292
+swap$ -- 118
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 400
+warning$ -- 37
+while$ -- 94
+width$ -- 0
+write$ -- 387
+(There were 37 warnings)

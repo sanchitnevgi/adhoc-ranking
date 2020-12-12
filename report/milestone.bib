@@ -1,0 +1,183 @@
+@article{Craswell2020OverviewOT,
+  title={Overview of the TREC 2019 deep learning track},
+  author={Nick Craswell and Bhaskar Mitra and E. Yilmaz and Daniel Fernando Campos and E. Voorhees},
+  journal={ArXiv},
+  year={2020},
+  volume={abs/2003.07820}
+}
+
+@article{Guo2016ADR,
+  title={A Deep Relevance Matching Model for Ad-hoc Retrieval},
+  author={J. Guo and Y. Fan and Qingyao Ai and W. Croft},
+  journal={Proceedings of the 25th ACM International on Conference on Information and Knowledge Management},
+  year={2016}
+}
+
+@inproceedings{Hui2017PACRRAP,
+  title={PACRR: A Position-Aware Neural IR Model for Relevance Matching},
+  author={Kai Hui and Andrew Yates and K. Berberich and G. Melo},
+  booktitle={EMNLP},
+  year={2017}
+}
+
+@article{Xiong2017EndtoEndNA,
+  title={End-to-End Neural Ad-hoc Ranking with Kernel Pooling},
+  author={Chenyan Xiong and Zhuyun Dai and J. Callan and Zhiyuan Liu and R. Power},
+  journal={Proceedings of the 40th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  year={2017}
+}
+
+@inproceedings{Xiong2017ConvolutionalNN,
+  title={Convolutional Neural Networks for So-Matching N-Grams in Ad-hoc Search Zhuyun Dai},
+  author={Chenyan Xiong and J. Callan and Zhiyuan Liu},
+  year={2017}
+}
+
+@article{Hui2018CoPACRRAC,
+  title={Co-PACRR: A Context-Aware Neural IR Model for Ad-hoc Retrieval},
+  author={Kai Hui and Andrew Yates and K. Berberich and G. Melo},
+  journal={Proceedings of the Eleventh ACM International Conference on Web Search and Data Mining},
+  year={2018}
+}
+
+@article{Campos2016MSMA,
+  title={MS MARCO: A Human Generated MAchine Reading COmprehension Dataset},
+  author={Daniel Fernando Campos and T. Nguyen and M. Rosenberg and Xia Song and Jianfeng Gao and Saurabh Tiwary and Rangan Majumder and L. Deng and Bhaskar Mitra},
+  journal={ArXiv},
+  year={2016},
+  volume={abs/1611.09268}
+}
+
+@article{Vaswani2017AttentionIA,
+  title={Attention is All you Need},
+  author={Ashish Vaswani and Noam Shazeer and Niki Parmar and Jakob Uszkoreit and Llion Jones and A. Gomez and L. Kaiser and Illia Polosukhin},
+  journal={ArXiv},
+  year={2017},
+  volume={abs/1706.03762}
+}
+
+@inproceedings{Devlin2019BERTPO,
+  title={BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding},
+  author={J. Devlin and Ming-Wei Chang and Kenton Lee and Kristina Toutanova},
+  booktitle={NAACL-HLT},
+  year={2019}
+}
+
+@article{MacAvaney2019CEDRCE,
+  title={CEDR: Contextualized Embeddings for Document Ranking},
+  author={S. MacAvaney and Andrew Yates and Arman Cohan and N. Goharian},
+  journal={Proceedings of the 42nd International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  year={2019}
+}
+
+
+@article{nogueira_passage_2020,
+	title = {Passage {Re}-ranking with {BERT}},
+	url = {http://arxiv.org/abs/1901.04085},
+	abstract = {Recently, neural models pretrained on a language modeling task, such as ELMo (Peters et al., 2017), OpenAI GPT (Radford et al., 2018), and BERT (Devlin et al., 2018), have achieved impressive results on various natural language processing tasks such as question-answering and natural language inference. In this paper, we describe a simple re-implementation of BERT for query-based passage re-ranking. Our system is the state of the art on the TREC-CAR dataset and the top entry in the leaderboard of the MS MARCO passage retrieval task, outperforming the previous state of the art by 27\% (relative) in MRR@10. The code to reproduce our results is available at https://github.com/nyu-dl/dl4marco-bert},
+	urldate = {2020-10-15},
+	journal = {arXiv:1901.04085 [cs]},
+	author = {Nogueira, Rodrigo and Cho, Kyunghyun},
+	month = apr,
+	year = {2020},
+	note = {arXiv: 1901.04085},
+	keywords = {Computer Science - Computation and Language, Computer Science - Information Retrieval, Computer Science - Machine Learning},
+	file = {arXiv Fulltext PDF:/Users/sanchitnevgi/Zotero/storage/XXYRTWFZ/Nogueira and Cho - 2020 - Passage Re-ranking with BERT.pdf:application/pdf;arXiv.org Snapshot:/Users/sanchitnevgi/Zotero/storage/UAM6URVN/1901.html:text/html}
+}
+
+@article{10.1145/3239571,
+author = {Yang, Peilin and Fang, Hui and Lin, Jimmy},
+title = {Anserini: Reproducible Ranking Baselines Using Lucene},
+year = {2018},
+issue_date = {November 2018},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {10},
+number = {4},
+issn = {1936-1955},
+url = {https://doi.org/10.1145/3239571},
+doi = {10.1145/3239571},
+abstract = {This work tackles the perennial problem of reproducible baselines in information retrieval research, focusing on bag-of-words ranking models. Although academic information retrieval researchers have a long history of building and sharing systems, they are primarily designed to facilitate the publication of research papers. As such, these systems are often incomplete, inflexible, poorly documented, difficult to use, and slow, particularly in the context of modern web-scale collections. Furthermore, the growing complexity of modern software ecosystems and the resource constraints most academic research groups operate under make maintaining open-source systems a constant struggle. However, except for a small number of companies (mostly commercial web search engines) that deploy custom infrastructure, Lucene has become the de facto platform in industry for building search applications. Lucene has an active developer base, a large audience of users, and diverse capabilities to work with heterogeneous collections at scale. However, it lacks systematic support for ad hoc experimentation using standard test collections. We describe Anserini, an information retrieval toolkit built on Lucene that fills this gap. Our goal is to simplify ad hoc experimentation and allow researchers to easily reproduce results with modern bag-of-words ranking models on diverse test collections. With Anserini, we demonstrate that Lucene provides a suitable framework for supporting information retrieval research. Experiments show that our system efficiently indexes large web collections, provides modern ranking models that are on par with research implementations in terms of effectiveness, and supports low-latency query evaluation to facilitate rapid experimentation},
+journal = {J. Data and Information Quality},
+month = oct,
+articleno = {16},
+numpages = {20},
+keywords = {TREC, Ad hoc retrieval}
+}
+
+@inproceedings{Chen2019UCASAT,
+  title={UCAS at TREC-2019 Deep Learning Track},
+  author={Xuanang Chen and Canjia Li and B. He and Yingfei Sun},
+  booktitle={TREC},
+  year={2019}
+}
+
+@article{Kingma2015AdamAM,
+  title={Adam: A Method for Stochastic Optimization},
+  author={Diederik P. Kingma and Jimmy Ba},
+  journal={CoRR},
+  year={2015},
+  volume={abs/1412.6980}
+}
+
+@article{Liu2019RoBERTaAR,
+  title={RoBERTa: A Robustly Optimized BERT Pretraining Approach},
+  author={Y. Liu and Myle Ott and Naman Goyal and Jingfei Du and Mandar Joshi and Danqi Chen and Omer Levy and M. Lewis and Luke Zettlemoyer and Veselin Stoyanov},
+  journal={ArXiv},
+  year={2019},
+  volume={abs/1907.11692}
+}
+
+@article{Yang2017AnseriniET,
+  title={Anserini: Enabling the Use of Lucene for Information Retrieval Research},
+  author={Peilin Yang and Hui Fang and Jimmy Lin},
+  journal={Proceedings of the 40th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  year={2017}
+}
+
+@article{Yang2018AnseriniRR,
+  title={Anserini: Reproducible Ranking Baselines Using Lucene},
+  author={Peilin Yang and Hui Fang and Jimmy Lin},
+  journal={ACM J. Data Inf. Qual.},
+  year={2018},
+  volume={10},
+  pages={16:1-16:20}
+}
+
+@article{Li2020PARADEPR,
+  title={PARADE: Passage Representation Aggregation for Document Reranking},
+  author={Canjia Li and A. Yates and S. MacAvaney and B. He and Y. Sun},
+  journal={ArXiv},
+  year={2020},
+  volume={abs/2008.09093}
+}
+
+@article{yang_simple_2019,
+	title = {Simple {Applications} of {BERT} for {Ad} {Hoc} {Document} {Retrieval}},
+	url = {http://arxiv.org/abs/1903.10972},
+	abstract = {Following recent successes in applying BERT to question answering, we explore simple applications to ad hoc document retrieval. This required confronting the challenge posed by documents that are typically longer than the length of input BERT was designed to handle. We address this issue by applying inference on sentences individually, and then aggregating sentence scores to produce document scores. Experiments on TREC microblog and newswire test collections show that our approach is simple yet effective, as we report the highest average precision on these datasets by neural approaches that we are aware of.},
+	urldate = {2020-10-15},
+	journal = {arXiv:1903.10972 [cs]},
+	author = {Yang, Wei and Zhang, Haotian and Lin, Jimmy},
+	month = mar,
+	year = {2019},
+	note = {arXiv: 1903.10972},
+	keywords = {Computer Science - Computation and Language, Computer Science - Information Retrieval},
+	file = {arXiv Fulltext PDF:/Users/sanchitnevgi/Zotero/storage/SJQXF9TA/Yang et al. - 2019 - Simple Applications of BERT for Ad Hoc Document Re.pdf:application/pdf;arXiv.org Snapshot:/Users/sanchitnevgi/Zotero/storage/LDIJ22RY/1903.html:text/html}
+}
+
+
+@article{Beltagy2020LongformerTL,
+  title={Longformer: The Long-Document Transformer},
+  author={Iz Beltagy and Matthew E. Peters and Arman Cohan},
+  journal={ArXiv},
+  year={2020},
+  volume={abs/2004.05150}
+}
+
+@inproceedings{Kovaleva2019RevealingTD,
+  title={Revealing the Dark Secrets of BERT},
+  author={O. Kovaleva and Alexey Romanov and Anna Rogers and Anna Rumshisky},
+  booktitle={EMNLP/IJCNLP},
+  year={2019}
+}

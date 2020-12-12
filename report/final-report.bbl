@@ -1,0 +1,318 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{21}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Beltagy, Peters, and Cohan}{Beltagy
+  et~al\mbox{.}}{2020}]%
+        {Beltagy2020LongformerTL}
+\bibfield{author}{\bibinfo{person}{Iz Beltagy}, \bibinfo{person}{Matthew~E.
+  Peters}, {and} \bibinfo{person}{Arman Cohan}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Longformer: The Long-Document Transformer}.
+\newblock \bibinfo{journal}{\emph{ArXiv}}  \bibinfo{volume}{abs/2004.05150}
+  (\bibinfo{year}{2020}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Campos, Nguyen, Rosenberg, Song, Gao, Tiwary,
+  Majumder, Deng, and Mitra}{Campos et~al\mbox{.}}{2016}]%
+        {Campos2016MSMA}
+\bibfield{author}{\bibinfo{person}{Daniel~Fernando Campos}, \bibinfo{person}{T.
+  Nguyen}, \bibinfo{person}{M. Rosenberg}, \bibinfo{person}{Xia Song},
+  \bibinfo{person}{Jianfeng Gao}, \bibinfo{person}{Saurabh Tiwary},
+  \bibinfo{person}{Rangan Majumder}, \bibinfo{person}{L. Deng}, {and}
+  \bibinfo{person}{Bhaskar Mitra}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{MS MARCO: A Human Generated MAchine Reading
+  COmprehension Dataset}.
+\newblock \bibinfo{journal}{\emph{ArXiv}}  \bibinfo{volume}{abs/1611.09268}
+  (\bibinfo{year}{2016}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Chen, Li, He, and Sun}{Chen
+  et~al\mbox{.}}{2019}]%
+        {Chen2019UCASAT}
+\bibfield{author}{\bibinfo{person}{Xuanang Chen}, \bibinfo{person}{Canjia Li},
+  \bibinfo{person}{B. He}, {and} \bibinfo{person}{Yingfei Sun}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{UCAS at TREC-2019 Deep Learning Track}. In
+  \bibinfo{booktitle}{\emph{TREC}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Craswell, Mitra, Yilmaz, Campos, and
+  Voorhees}{Craswell et~al\mbox{.}}{2020}]%
+        {Craswell2020OverviewOT}
+\bibfield{author}{\bibinfo{person}{Nick Craswell}, \bibinfo{person}{Bhaskar
+  Mitra}, \bibinfo{person}{E. Yilmaz}, \bibinfo{person}{Daniel~Fernando
+  Campos}, {and} \bibinfo{person}{E. Voorhees}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Overview of the TREC 2019 deep learning track}.
+\newblock \bibinfo{journal}{\emph{ArXiv}}  \bibinfo{volume}{abs/2003.07820}
+  (\bibinfo{year}{2020}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Devlin, Chang, Lee, and Toutanova}{Devlin
+  et~al\mbox{.}}{2019}]%
+        {Devlin2019BERTPO}
+\bibfield{author}{\bibinfo{person}{J. Devlin}, \bibinfo{person}{Ming-Wei
+  Chang}, \bibinfo{person}{Kenton Lee}, {and} \bibinfo{person}{Kristina
+  Toutanova}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{BERT: Pre-training of Deep Bidirectional
+  Transformers for Language Understanding}. In
+  \bibinfo{booktitle}{\emph{NAACL-HLT}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Guo, Fan, Ai, and Croft}{Guo
+  et~al\mbox{.}}{2016}]%
+        {Guo2016ADR}
+\bibfield{author}{\bibinfo{person}{J. Guo}, \bibinfo{person}{Y. Fan},
+  \bibinfo{person}{Qingyao Ai}, {and} \bibinfo{person}{W. Croft}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{A Deep Relevance Matching Model for Ad-hoc
+  Retrieval}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the 25th ACM International on
+  Conference on Information and Knowledge Management}} (\bibinfo{year}{2016}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hui, Yates, Berberich, and Melo}{Hui
+  et~al\mbox{.}}{2017}]%
+        {Hui2017PACRRAP}
+\bibfield{author}{\bibinfo{person}{Kai Hui}, \bibinfo{person}{Andrew Yates},
+  \bibinfo{person}{K. Berberich}, {and} \bibinfo{person}{G. Melo}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{PACRR: A Position-Aware Neural IR Model for
+  Relevance Matching}. In \bibinfo{booktitle}{\emph{EMNLP}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hui, Yates, Berberich, and Melo}{Hui
+  et~al\mbox{.}}{2018}]%
+        {Hui2018CoPACRRAC}
+\bibfield{author}{\bibinfo{person}{Kai Hui}, \bibinfo{person}{Andrew Yates},
+  \bibinfo{person}{K. Berberich}, {and} \bibinfo{person}{G. Melo}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Co-PACRR: A Context-Aware Neural IR Model for
+  Ad-hoc Retrieval}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the Eleventh ACM International
+  Conference on Web Search and Data Mining}} (\bibinfo{year}{2018}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kingma and Ba}{Kingma and Ba}{2015}]%
+        {Kingma2015AdamAM}
+\bibfield{author}{\bibinfo{person}{Diederik~P. Kingma} {and}
+  \bibinfo{person}{Jimmy Ba}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Adam: A Method for Stochastic Optimization}.
+\newblock \bibinfo{journal}{\emph{CoRR}}  \bibinfo{volume}{abs/1412.6980}
+  (\bibinfo{year}{2015}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kovaleva, Romanov, Rogers, and
+  Rumshisky}{Kovaleva et~al\mbox{.}}{2019}]%
+        {Kovaleva2019RevealingTD}
+\bibfield{author}{\bibinfo{person}{O. Kovaleva}, \bibinfo{person}{Alexey
+  Romanov}, \bibinfo{person}{Anna Rogers}, {and} \bibinfo{person}{Anna
+  Rumshisky}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Revealing the Dark Secrets of BERT}. In
+  \bibinfo{booktitle}{\emph{EMNLP/IJCNLP}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Li, Yates, MacAvaney, He, and Sun}{Li
+  et~al\mbox{.}}{2020}]%
+        {Li2020PARADEPR}
+\bibfield{author}{\bibinfo{person}{Canjia Li}, \bibinfo{person}{A. Yates},
+  \bibinfo{person}{S. MacAvaney}, \bibinfo{person}{B. He}, {and}
+  \bibinfo{person}{Y. Sun}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{PARADE: Passage Representation Aggregation for
+  Document Reranking}.
+\newblock \bibinfo{journal}{\emph{ArXiv}}  \bibinfo{volume}{abs/2008.09093}
+  (\bibinfo{year}{2020}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Liu, Ott, Goyal, Du, Joshi, Chen, Levy, Lewis,
+  Zettlemoyer, and Stoyanov}{Liu et~al\mbox{.}}{2019}]%
+        {Liu2019RoBERTaAR}
+\bibfield{author}{\bibinfo{person}{Y. Liu}, \bibinfo{person}{Myle Ott},
+  \bibinfo{person}{Naman Goyal}, \bibinfo{person}{Jingfei Du},
+  \bibinfo{person}{Mandar Joshi}, \bibinfo{person}{Danqi Chen},
+  \bibinfo{person}{Omer Levy}, \bibinfo{person}{M. Lewis},
+  \bibinfo{person}{Luke Zettlemoyer}, {and} \bibinfo{person}{Veselin
+  Stoyanov}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{RoBERTa: A Robustly Optimized BERT Pretraining
+  Approach}.
+\newblock \bibinfo{journal}{\emph{ArXiv}}  \bibinfo{volume}{abs/1907.11692}
+  (\bibinfo{year}{2019}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{MacAvaney, Yates, Cohan, and
+  Goharian}{MacAvaney et~al\mbox{.}}{2019}]%
+        {MacAvaney2019CEDRCE}
+\bibfield{author}{\bibinfo{person}{S. MacAvaney}, \bibinfo{person}{Andrew
+  Yates}, \bibinfo{person}{Arman Cohan}, {and} \bibinfo{person}{N. Goharian}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{CEDR: Contextualized Embeddings for Document
+  Ranking}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the 42nd International ACM
+  SIGIR Conference on Research and Development in Information Retrieval}}
+  (\bibinfo{year}{2019}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Nogueira and Cho}{Nogueira and Cho}{2020}]%
+        {nogueira_passage_2020}
+\bibfield{author}{\bibinfo{person}{Rodrigo Nogueira} {and}
+  \bibinfo{person}{Kyunghyun Cho}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Passage {Re}-ranking with {BERT}}.
+\newblock \bibinfo{journal}{\emph{arXiv:1901.04085 [cs]}}
+  (\bibinfo{date}{April} \bibinfo{year}{2020}).
+\newblock
+\urldef\tempurl%
+\url{http://arxiv.org/abs/1901.04085}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{arXiv: 1901.04085.}
+
+
+\bibitem[\protect\citeauthoryear{Vaswani, Shazeer, Parmar, Uszkoreit, Jones,
+  Gomez, Kaiser, and Polosukhin}{Vaswani et~al\mbox{.}}{2017}]%
+        {Vaswani2017AttentionIA}
+\bibfield{author}{\bibinfo{person}{Ashish Vaswani}, \bibinfo{person}{Noam
+  Shazeer}, \bibinfo{person}{Niki Parmar}, \bibinfo{person}{Jakob Uszkoreit},
+  \bibinfo{person}{Llion Jones}, \bibinfo{person}{A. Gomez},
+  \bibinfo{person}{L. Kaiser}, {and} \bibinfo{person}{Illia Polosukhin}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Attention is All you Need}.
+\newblock \bibinfo{journal}{\emph{ArXiv}}  \bibinfo{volume}{abs/1706.03762}
+  (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Xiong, Callan, and Liu}{Xiong
+  et~al\mbox{.}}{2017a}]%
+        {Xiong2017ConvolutionalNN}
+\bibfield{author}{\bibinfo{person}{Chenyan Xiong}, \bibinfo{person}{J. Callan},
+  {and} \bibinfo{person}{Zhiyuan Liu}.} \bibinfo{year}{2017}\natexlab{a}.
+\newblock \showarticletitle{Convolutional Neural Networks for So-Matching
+  N-Grams in Ad-hoc Search Zhuyun Dai}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Xiong, Dai, Callan, Liu, and Power}{Xiong
+  et~al\mbox{.}}{2017b}]%
+        {Xiong2017EndtoEndNA}
+\bibfield{author}{\bibinfo{person}{Chenyan Xiong}, \bibinfo{person}{Zhuyun
+  Dai}, \bibinfo{person}{J. Callan}, \bibinfo{person}{Zhiyuan Liu}, {and}
+  \bibinfo{person}{R. Power}.} \bibinfo{year}{2017}\natexlab{b}.
+\newblock \showarticletitle{End-to-End Neural Ad-hoc Ranking with Kernel
+  Pooling}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the 40th International ACM
+  SIGIR Conference on Research and Development in Information Retrieval}}
+  (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Yang, Fang, and Lin}{Yang
+  et~al\mbox{.}}{2017}]%
+        {Yang2017AnseriniET}
+\bibfield{author}{\bibinfo{person}{Peilin Yang}, \bibinfo{person}{Hui Fang},
+  {and} \bibinfo{person}{Jimmy Lin}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Anserini: Enabling the Use of Lucene for
+  Information Retrieval Research}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the 40th International ACM
+  SIGIR Conference on Research and Development in Information Retrieval}}
+  (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Yang, Fang, and Lin}{Yang
+  et~al\mbox{.}}{2018a}]%
+        {Yang2018AnseriniRR}
+\bibfield{author}{\bibinfo{person}{Peilin Yang}, \bibinfo{person}{Hui Fang},
+  {and} \bibinfo{person}{Jimmy Lin}.} \bibinfo{year}{2018}\natexlab{a}.
+\newblock \showarticletitle{Anserini: Reproducible Ranking Baselines Using
+  Lucene}.
+\newblock \bibinfo{journal}{\emph{ACM J. Data Inf. Qual.}}
+  \bibinfo{volume}{10} (\bibinfo{year}{2018}), \bibinfo{pages}{16:1--16:20}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Yang, Fang, and Lin}{Yang
+  et~al\mbox{.}}{2018b}]%
+        {10.1145/3239571}
+\bibfield{author}{\bibinfo{person}{Peilin Yang}, \bibinfo{person}{Hui Fang},
+  {and} \bibinfo{person}{Jimmy Lin}.} \bibinfo{year}{2018}\natexlab{b}.
+\newblock \showarticletitle{Anserini: Reproducible Ranking Baselines Using
+  Lucene}.
+\newblock \bibinfo{journal}{\emph{J. Data and Information Quality}}
+  \bibinfo{volume}{10}, \bibinfo{number}{4}, Article \bibinfo{articleno}{16}
+  (\bibinfo{date}{Oct.} \bibinfo{year}{2018}), \bibinfo{numpages}{20}~pages.
+\newblock
+\showISSN{1936-1955}
+\urldef\tempurl%
+\url{https://doi.org/10.1145/3239571}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Yang, Zhang, and Lin}{Yang
+  et~al\mbox{.}}{2019}]%
+        {yang_simple_2019}
+\bibfield{author}{\bibinfo{person}{Wei Yang}, \bibinfo{person}{Haotian Zhang},
+  {and} \bibinfo{person}{Jimmy Lin}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Simple {Applications} of {BERT} for {Ad} {Hoc}
+  {Document} {Retrieval}}.
+\newblock \bibinfo{journal}{\emph{arXiv:1903.10972 [cs]}}
+  (\bibinfo{date}{March} \bibinfo{year}{2019}).
+\newblock
+\urldef\tempurl%
+\url{http://arxiv.org/abs/1903.10972}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{arXiv: 1903.10972.}
+
+
+\end{thebibliography}
